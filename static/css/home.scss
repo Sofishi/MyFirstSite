@@ -1,0 +1,185 @@
+:root {
+    --note-pos-1: translate(530px, 150px) rotate(20deg);
+    --note-pos-2: translate(450px, 300px) rotate(-15deg); 
+    --note-pos-3: translate(1050px, 230px) rotate(10deg);
+    --note-pos-4: translate(1020px, 400px) rotate(-15deg);
+    --note-pos-5: translate(975px, 150px) rotate(-20deg);
+    
+    --note-pos-d-1: translate(530px, 150px) rotate(-20deg);
+    --note-pos-d-2: translate(450px, 300px) rotate(15deg); 
+    --note-pos-d-3: translate(1050px, 230px) rotate(-10deg);
+    --note-pos-d-4: translate(1020px, 400px) rotate(15deg);
+    --note-pos-d-5: translate(975px, 150px) rotate(20deg);
+    
+    --animation-time: 0.6s; 
+  }
+  
+
+  
+  @each $name, $pos in $legPos {
+    @keyframes #{$name}-animation {
+      100% {
+        transform: $pos scaleX(1.03);
+      }
+    }
+  
+    .shake-#{$name} {
+      animation: #{$name}-animation var(--animation-time) 0s ease-in-out infinite alternate;
+    }
+  }
+  
+  * {
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  .container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  #head {
+    transform-origin: center;
+    transform: rotate(9deg) translate(-23px, -40px);
+  }
+  
+  #tongue {
+    transform: translate(1103px, 477px) rotate(-9deg);
+  }
+  
+  #belly {
+    cursor: pointer;
+  }
+  
+  #left-leg {
+    transform: translate(1066px, 714px)
+  }
+  
+  #right-leg {
+    transform: translate(856px, 714px);
+  }
+  .info {
+    margin-bottom: 10px;
+    font-size: 25px;
+    font-family: 'Sacramento', cursive;
+  }
+  
+  .shake-head {
+    animation: shake-head-animation var(--animation-time) 0s ease-in-out infinite alternate;
+  }
+  
+  .toggle-tongue {
+    animation: toggle-tongue-animation 0.8s 0s ease-in-out infinite alternate;
+  }
+  
+  @each $ele in $bellies {
+    .shake-#{$ele} {
+      animation: shake-#{$ele}-animation var(--animation-time) 0s ease-in-out infinite alternate;
+    }
+  }
+  
+  #main-body {
+    transform: translate(976px, 446px);
+  }
+  @keyframes shake-main-belly-animation {
+    0% {
+      transform: translate(976px, 446px) skew(-1deg);
+    }
+    100% {
+      transform: translate(976px, 446px) skew(1deg);
+    }
+  }
+  
+  #sub-body {
+    transform: translate(1037px, 507px);
+  }
+  
+  @keyframes shake-sub-belly-animation {
+    0% {
+      transform: translate(1037px, 507px) skew(-1deg);
+    }
+    100% {
+      transform: translate(1037px, 507px) skew(1deg);
+    }
+  }
+  
+  #main-body-shadow {
+    transform: translate(1116px, 420px);
+  }
+  @keyframes shake-main-belly-shadow-animation {
+    0% {
+      transform: translate(1116px, 420px) skew(-1deg);
+    }
+    100% {
+      transform: translate(1116px, 420px) skew(1deg);
+    }
+  }
+  
+  #sub-body-shadow {
+    transform: translate(1174px, 489px);
+  }
+  @keyframes shake-sub-belly-shadow-animation {
+    0% {
+      transform: translate(1174px, 489px) skew(-1deg);
+    }
+    100% {
+      transform: translate(1174px, 489px) skew(1deg);
+    }
+  }
+  
+  .closed-eyes {
+    display: none;
+  }
+  
+  @keyframes toggle-tongue-animation {
+    0% {
+      transform: translate(1104px, 477px) rotate(-9deg) scale(0.9);
+    }
+    
+    100% {
+      transform: translate(1104px, 478px) rotate(-9deg);
+    }
+  }
+  
+  .notes {
+    transform: translate(775px, 450px);
+    transform-origin: 0px 0px;
+    fill: rgb(226, 57, 57);
+  }
+  
+  @for $i from 1 through 5 {
+    @keyframes notes-move-#{$i} {
+      100% {
+        transform: var(--note-pos-#{$i});
+      }
+    }
+    
+    @keyframes notes-dance-#{$i} {
+      0% {
+        transform: var(--note-pos-#{$i});
+      }
+      100% {
+        transform: var(--note-pos-d-#{$i});
+      }
+    }
+    
+    .play.note-#{$i} {
+      transform-origin: 25px 25px;
+      animation: notes-move-#{$i} var(--animation-time) 1 forwards, notes-dance-#{$i} var(--animation-time) var(--animation-time) ease-in-out infinite alternate;
+    }
+    
+  }
+  
+  @keyframes shake-head-animation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(18deg) translate(-60px, -85px);
+    }
+  } 
+  
